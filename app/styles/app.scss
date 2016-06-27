@@ -1,5 +1,6 @@
 $darkgray: #5a5b60;
 $red: #d00;
+$white: #fff;
 
 // Bootstrap Variables
 $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
@@ -33,5 +34,16 @@ h1 {
 .add-button {
   &:hover {
     background-color: $red;
+  }
+}
+
+.contact-list {
+  list-style-type: none;
+
+  h4 {
+    background-color: $darkgray;
+    border-radius: 50%;
+    color: $white;
+    text-align: center;
   }
 }

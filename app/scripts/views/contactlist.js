@@ -5,6 +5,7 @@ var $ = require('jquery');
 
 var ContactItemView = Backbone.View.extend({
   tagName: 'li',
+  className: 'contact-list',
   template: template,
 
   render: function(){
