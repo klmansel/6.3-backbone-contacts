@@ -5769,4 +5769,16 @@ button.close {
 img {
   max-width: 100%; }
 
+h1 {
+  font-family: cursive;
+  text-align: center; }
+
+.contact-form {
+  background-color: #5a5b60;
+  height: 300px;
+  padding: 30px;
+  width: 400px; }
+
+.add-button:hover {
+  background-color: #d00; }
 /*# sourceMappingURL=app.css.map */
