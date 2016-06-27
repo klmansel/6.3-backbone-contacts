@@ -1,3 +1,5 @@
+$darkgray: #5a5b60;
+$red: #d00;
 
 // Bootstrap Variables
 $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
@@ -14,4 +16,22 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 
 img {
   max-width: 100%;
+}
+
+h1 {
+  font-family: cursive;
+  text-align: center;
+}
+
+.contact-form {
+  background-color: $darkgray;
+  height: 300px;
+  padding: 30px;
+  width: 400px;
+}
+
+.add-button {
+  &:hover {
+    background-color: $red;
+  }
 }

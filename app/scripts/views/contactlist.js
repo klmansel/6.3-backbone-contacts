@@ -1,55 +1,67 @@
 var Backbone = require('backbone');
-var template = require('../templates/contacts.hbs');
+var template = require('../../templates/contactlist.hbs');
+var formTemplate = require('../../templates/contactform.hbs');
+var $ = require('jquery');
 
-
-var ContactDescView = Backbone.View.extend({
-  tagName: 'h2',
-  attributes: {
-    'class': 'description'
-  },
+var ContactItemView = Backbone.View.extend({
+  tagName: 'li',
+  template: template,
 
   render: function(){
-    this.$el.text('Here is a list of important people you know:');
+    var context = this.model.toJSON();
+    this.$el.html(this.template(context));
     return this;
   }
 });
 
 var ContactListView = Backbone.View.extend({
   tagName: 'ul',
-  className: 'contact-list',
-
+  className: 'form-results col-md-4 col-md-offset-2',
   initialize: function(){
-    this.listenTo(this.collection, 'add', this.renderContactItem);
+    this.listenTo(this.collection, 'add', this.renderItem);
   },
 
   render: function(){
     return this;
   },
 
-  renderContactItem: function(){
-    var contactItem = new ContactListView({model: Contact});
+  renderItem: function(contact){
+    var contactItem = new ContactItemView({model: contact});
     this.$el.append(contactItem.render().el);
   }
-
 });
 
-var ContactItemView = Backbone.View.extend({
-  tagName: 'li',
-  className: 'each-contact',
+
+
+var ContactFormView = Backbone.View.extend({
+  tagName: 'form',
+  className: 'contact-form col-md-4',
+  template: formTemplate,
+  events: {
+    'submit': 'addContact'
+  },
 
   render: function(){
-    var context = this.model.toJSON();
-    var renderedHTML = this.template(context);
-
-    this.$el.html(renderedHtml);
+    this.$el.html(this.template());
     return this;
+  },
+  addContact: function(event){
+    event.preventDefault();
+    this.collection.create({
+      email: $('#email').val(),
+      name: $('#name').val(),
+      phone: $('#phone').val()
+    });
+    this.clear({
+      email: $('#email').val(),
+      name: $('#name').val(),
+      phone: $('#phone').val()
+    });
   }
-
 });
 
 module.exports = {
-  'ContactDescView' : ContactDescView,
-  'ContactListView' : ContactListView,
-  'ContactItemView' : ContactItemView
-
+  'ContactItemView': ContactItemView,
+  'ContactListView': ContactListView,
+  'ContactFormView': ContactFormView
 };
