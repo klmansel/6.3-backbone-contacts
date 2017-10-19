@@ -1,3 +1,2 @@
-## 6 3 backbone contacts
-# 6.3-backbone-contacts
+## Backbone Contacts App
 Contacts app built while learning Backbone.js
